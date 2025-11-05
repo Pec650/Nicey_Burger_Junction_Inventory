@@ -1,0 +1,58 @@
+#sidebar {
+    z-index: 998;
+    display: block;
+    height: calc(100vh - 100px);
+    width: 62px;
+    top: 100px;
+    position: sticky;
+    overflow: hidden;
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+    background-color: #f9a833ff;
+    transition:
+        width 0.2s ease-in-out;
+
+    button {
+        height: 80px;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        color: white;
+        background-color: white;
+        text-align: left;
+        padding-left: 75px;
+        font-weight: 800;
+        font-size: 20px;
+        text-transform: uppercase;
+        transition: 
+            color 0.2s ease-in-out;
+
+        img {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            margin-top: -10px;
+            margin-left: -65px;
+        }
+
+        &:hover {
+            background-color: lightgray;
+        }
+    }
+
+    .selected {
+        color: white !important;
+        background-color: red !important;
+
+        img {
+            filter:brightness(0) invert(1);
+        }
+    }
+
+    &:hover {
+        width: 375px;
+
+        button {
+            color: rgb(67, 44, 26);
+        }
+    }
+}
