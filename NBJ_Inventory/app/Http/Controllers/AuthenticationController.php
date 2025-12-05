@@ -30,21 +30,13 @@ class AuthenticationController extends Controller
                          ->withErrors(['password' => 'The password field is required.']);
         }
 
-        if (!Hash::check($request['password'], $user['password'])) {
-            session()->flash('email', $user['email']);
-            return back()->with('email', $user['email'])
-                        ->withErrors(['password' => 'Incorrect Password']);
+        if (Hash::check($request['password'], $user['password'])) {
+            Auth::login($user);
+            return redirect()->route('dashboard');;
         }
 
-        Auth::login($user);
-        return redirect()->route('home');
-    }
-
-    public function logout(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('index');
+        session()->flash('email', $user['email']);
+        return back()->with('email', $user['email'])
+                     ->withErrors(['password' => 'Incorrect Password']);
     }
 }
